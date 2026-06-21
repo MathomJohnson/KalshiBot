@@ -1,0 +1,8 @@
+# One Kalshi market ticker per line. Lines starting with # are ignored.
+# You can also import whole events:
+# --event KXWORLDCUP-25-ENG
+#
+# Find tickers on kalshi.com — they're in the URL or market page.
+# Example (replace with real tickers from the site):
+# KXWORLDCUP-25-ENG
+# KXWORLDCUP-25-FRA

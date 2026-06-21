@@ -1,0 +1,38 @@
+---
+description: Core engineering standards for KalshiBot — compound engineering, documentation, and commenting
+alwaysApply: true
+---
+
+# KalshiBot Engineering Standards
+
+## Compound Engineering
+
+- Build reusable modules with clear boundaries: fetcher, strategy, executor, repositories, API clients.
+- Prefer small, testable functions over monolithic loops.
+- When adding behavior, extend existing interfaces rather than duplicating logic.
+- Update related docs, env examples, and types whenever schema or API contracts change.
+
+## Comments and Docstrings
+
+- Every Python module starts with a module docstring describing purpose and data flow.
+- Every public function/class has a docstring with args, returns, and side effects.
+- TypeScript exports use JSDoc headers for non-obvious logic.
+- Comment *why*, not *what* — especially for trading math, scheduler tiers, and risk checks.
+
+## Documentation Discipline
+
+- After schema changes: update `supabase/migrations`, regenerate types if applicable, update `docs/architecture.md`.
+- After new env vars: update `.env.example` files and `docs/setup.md`.
+- After API integration changes: update `docs/architecture.md` and inline client docstrings.
+- After rollout or phase changes: update `docs/rollout-phases.md` and `.cursor/rules/deployment-phases.mdc`.
+
+## Security
+
+- Never put secrets in URL query strings.
+- Never expose service role keys or exchange API keys to the Next.js client.
+- Dashboard uses Supabase anon key + authenticated session only; bot uses service role on Railway.
+
+## Testing
+
+- Add unit tests for odds conversion, edge calculation, scheduler intervals, and risk checks.
+- Verify RLS policies before deploying dashboard changes.

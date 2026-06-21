@@ -1,0 +1,25 @@
+---
+description: KalshiBot rollout phases — demo/plumbing, production paper, production live
+alwaysApply: true
+---
+
+# Deployment Phases
+
+Follow [docs/rollout-phases.md](../../docs/rollout-phases.md) for the current operations plan.
+
+## Default phase (unless user says otherwise)
+
+**Phase 1 — Demo API + paper:** validate plumbing only. Demo has few/no World Cup markets; do not expect WC strategy validation on demo.
+
+## Phase progression
+
+1. **Phase 1:** `KALSHI_BASE_URL` = demo, `trading_mode` = paper, `kill_switch` = true, `trading_enabled` = false
+2. **Phase 2:** `KALSHI_BASE_URL` = production, still paper — real WC markets and strategy soak
+3. **Phase 3:** production + `trading_mode` = live — only after Phase 2 exit criteria met
+
+## Rules when implementing or advising
+
+- Never suggest live trading during Phase 1 or before Phase 2 paper soak.
+- Kalshi API secrets stay on bot/Railway (`apps/bot/.env`), never Vercel or browser.
+- When changing phase, update `docs/rollout-phases.md` checklists if exit criteria or steps change.
+- Original build plan in `.cursor/plans/` is a frozen implementation snapshot — use `docs/rollout-phases.md` for rollout context.

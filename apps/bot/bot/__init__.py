@@ -1,0 +1,1 @@
+"""KalshiBot trading worker package."""
